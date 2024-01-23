@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class IsReserve {
+public class IsReserveOption {
     private String isReserve;
 }

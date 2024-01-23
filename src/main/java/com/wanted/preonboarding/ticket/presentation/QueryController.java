@@ -2,7 +2,7 @@ package com.wanted.preonboarding.ticket.presentation;
 
 import com.wanted.preonboarding.core.domain.response.ResponseHandler;
 import com.wanted.preonboarding.ticket.application.TicketSeller;
-import com.wanted.preonboarding.ticket.domain.dto.request.IsReserve;
+import com.wanted.preonboarding.ticket.domain.dto.request.IsReserveOption;
 import com.wanted.preonboarding.ticket.domain.dto.response.PerformanceInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,14 +22,14 @@ public class QueryController {
     private final TicketSeller ticketSeller;
 
     @GetMapping("/all/performance")
-    public ResponseEntity<ResponseHandler<List<PerformanceInfo>>> getAllPerformanceInfoList(@RequestBody IsReserve isReserve) {
+    public ResponseEntity<ResponseHandler<List<PerformanceInfo>>> getAllPerformanceInfoList(@RequestBody IsReserveOption isReserveOption) {
         System.out.println("getAllPerformanceInfoList");
         return ResponseEntity
                 .ok()
                 .body(ResponseHandler.<List<PerformanceInfo>>builder()
                         .message("Success")
                         .statusCode(HttpStatus.OK)
-                        .data(ticketSeller.getAllPerformanceInfoList(isReserve))
+                        .data(ticketSeller.getAllPerformanceInfoList(isReserveOption))
                         .build()
                 );
     }
