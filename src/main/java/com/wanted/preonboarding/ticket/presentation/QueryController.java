@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,12 +25,25 @@ public class QueryController {
     public ResponseEntity<ResponseHandler<List<PerformanceInfo>>> getAllPerformanceInfoList(@RequestBody IsReserve isReserve) {
         System.out.println("getAllPerformanceInfoList");
         return ResponseEntity
-            .ok()
-            .body(ResponseHandler.<List<PerformanceInfo>>builder()
-                .message("Success")
-                .statusCode(HttpStatus.OK)
-                .data(ticketSeller.getAllPerformanceInfoList(isReserve))
-                .build()
-            );
+                .ok()
+                .body(ResponseHandler.<List<PerformanceInfo>>builder()
+                        .message("Success")
+                        .statusCode(HttpStatus.OK)
+                        .data(ticketSeller.getAllPerformanceInfoList(isReserve))
+                        .build()
+                );
+    }
+
+    @GetMapping("/performance")
+    public ResponseEntity<ResponseHandler<PerformanceInfo>> getPerformanceInfoDetail(@RequestParam("name") String name) {
+        System.out.println("getPerformanceInfoDetail");
+        return ResponseEntity
+                .ok()
+                .body(ResponseHandler.<PerformanceInfo>builder()
+                        .message("Success")
+                        .statusCode(HttpStatus.OK)
+                        .data(ticketSeller.getPerformanceInfoDetail(name))
+                        .build()
+                );
     }
 }
