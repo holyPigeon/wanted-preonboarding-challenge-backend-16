@@ -1,16 +1,12 @@
 package com.wanted.preonboarding.ticket.domain.entity;
 
-import com.wanted.preonboarding.ticket.domain.dto.ReserveInfo;
+import com.wanted.preonboarding.ticket.domain.dto.response.ReserveInfo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Entity

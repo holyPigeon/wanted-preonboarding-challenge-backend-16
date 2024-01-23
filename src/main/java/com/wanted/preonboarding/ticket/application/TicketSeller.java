@@ -1,7 +1,7 @@
 package com.wanted.preonboarding.ticket.application;
 
-import com.wanted.preonboarding.ticket.domain.dto.PerformanceInfo;
-import com.wanted.preonboarding.ticket.domain.dto.ReserveInfo;
+import com.wanted.preonboarding.ticket.domain.dto.response.PerformanceInfo;
+import com.wanted.preonboarding.ticket.domain.dto.response.ReserveInfo;
 import com.wanted.preonboarding.ticket.domain.entity.Performance;
 import com.wanted.preonboarding.ticket.domain.entity.Reservation;
 import com.wanted.preonboarding.ticket.infrastructure.repository.PerformanceRepository;
