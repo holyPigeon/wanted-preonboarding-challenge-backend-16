@@ -1,5 +1,6 @@
 package com.wanted.preonboarding.ticket.application;
 
+import com.wanted.preonboarding.ticket.domain.dto.request.IsReserve;
 import com.wanted.preonboarding.ticket.domain.dto.response.PerformanceInfo;
 import com.wanted.preonboarding.ticket.domain.dto.response.ReserveInfo;
 import com.wanted.preonboarding.ticket.domain.entity.Performance;
@@ -21,8 +22,8 @@ public class TicketSeller {
     private final ReservationRepository reservationRepository;
     private long totalAmount = 0L;
 
-    public List<PerformanceInfo> getAllPerformanceInfoList() {
-        return performanceRepository.findByIsReserve("enable")
+    public List<PerformanceInfo> getAllPerformanceInfoList(IsReserve isReserve) {
+        return performanceRepository.findByIsReserve(isReserve.getIsReserve())
             .stream()
             .map(PerformanceInfo::of)
             .toList();
