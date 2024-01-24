@@ -1,12 +1,10 @@
 package com.wanted.preonboarding.ticket.domain.dto.request;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder
 public class IsReserveOption {
     private String isReserve;
 }
