@@ -1,4 +1,4 @@
-package com.wanted.preonboarding.ticket.domain.dto.response;
+package com.wanted.preonboarding.ticket.domain.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;
