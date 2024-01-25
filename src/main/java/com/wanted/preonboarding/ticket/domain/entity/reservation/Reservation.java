@@ -1,4 +1,4 @@
-package com.wanted.preonboarding.ticket.domain.entity;
+package com.wanted.preonboarding.ticket.domain.entity.reservation;
 
 import com.wanted.preonboarding.ticket.domain.dto.request.ReserveInfo;
 import jakarta.persistence.*;
