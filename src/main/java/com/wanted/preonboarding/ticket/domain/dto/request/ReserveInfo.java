@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -17,6 +16,7 @@ public class ReserveInfo {
     private String reservationPhoneNumber;
     private String reservationStatus; // 예약; 취소;
     private long amount;
+    private int discountType;
     private int round;
     private char line;
     private int seat;
