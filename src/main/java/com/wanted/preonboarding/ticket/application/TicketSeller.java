@@ -7,6 +7,8 @@ import com.wanted.preonboarding.ticket.domain.dto.response.DetailReserveInfo;
 import com.wanted.preonboarding.ticket.domain.dto.response.PerformanceInfo;
 import com.wanted.preonboarding.ticket.domain.entity.performance.Performance;
 import com.wanted.preonboarding.ticket.domain.entity.reservation.Reservation;
+import com.wanted.preonboarding.ticket.domain.entity.reservation.discount.DiscountManager;
+import com.wanted.preonboarding.ticket.domain.entity.reservation.discount.DiscountPolicy;
 import com.wanted.preonboarding.ticket.infrastructure.repository.PerformanceRepository;
 import com.wanted.preonboarding.ticket.infrastructure.repository.ReservationRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -22,6 +24,7 @@ import java.util.List;
 public class TicketSeller {
     private final PerformanceRepository performanceRepository;
     private final ReservationRepository reservationRepository;
+    private final DiscountManager discountManager;
     private long totalAmount = 0L;
 
     public List<PerformanceInfo> getAllPerformanceInfoList(IsReserveOption isReserveOption) {
@@ -41,8 +44,11 @@ public class TicketSeller {
             .orElseThrow(EntityNotFoundException::new);
         String enableReserve = info.getIsReserve();
         if (enableReserve.equalsIgnoreCase("enable")) {
-            // 1. 결제
+            // 1-1. 결제
             int price = info.getPrice();
+            // 1-2. 할인
+            DiscountPolicy discountPolicy = discountManager.findDiscountOf(reserveInfo.getDiscountType());
+            price -= discountPolicy.discount(price);
             reserveInfo.setAmount(reserveInfo.getAmount() - price);
             // 2. 예매 진행
             reservationRepository.save(Reservation.of(reserveInfo));
