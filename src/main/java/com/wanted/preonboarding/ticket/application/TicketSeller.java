@@ -1,8 +1,10 @@
 package com.wanted.preonboarding.ticket.application;
 
 import com.wanted.preonboarding.ticket.domain.dto.request.IsReserveOption;
-import com.wanted.preonboarding.ticket.domain.dto.response.PerformanceInfo;
+import com.wanted.preonboarding.ticket.domain.dto.request.ReservationInfo;
 import com.wanted.preonboarding.ticket.domain.dto.request.ReserveInfo;
+import com.wanted.preonboarding.ticket.domain.dto.response.DetailReserveInfo;
+import com.wanted.preonboarding.ticket.domain.dto.response.PerformanceInfo;
 import com.wanted.preonboarding.ticket.domain.entity.Performance;
 import com.wanted.preonboarding.ticket.domain.entity.Reservation;
 import com.wanted.preonboarding.ticket.infrastructure.repository.PerformanceRepository;
@@ -49,6 +51,20 @@ public class TicketSeller {
         } else {
             return false;
         }
+    }
+
+    public DetailReserveInfo getReserveInfoDetail(ReservationInfo reservationInfo) {
+        Reservation reservation = reservationRepository.findByNameAndPhoneNumber(
+                reservationInfo.getReservationName(), reservationInfo.getReservationPhoneNumber());
+        DetailReserveInfo reservedPerformance = DetailReserveInfo.of(reservation);
+
+        String performanceName = performanceRepository.findById(reservation.getPerformanceId())
+                .orElseThrow(EntityNotFoundException::new).getName();
+        DetailReserveInfo.builder()
+                .performanceName(performanceName)
+                .build();
+
+        return reservedPerformance;
     }
 
 }
