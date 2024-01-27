@@ -6,7 +6,7 @@ public class NewYearDiscount implements DiscountPolicy {
 
     @Override
     public int discount(int price) {
-        return (int) (price * 0.8);
+        return (int) (price * 0.2);
     }
 
     @Override
